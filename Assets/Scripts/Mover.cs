@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,12 +10,16 @@ public class Mover : MonoBehaviour
     private Transform target;
 
     private NavMeshAgent PlayerNav;
-    private Ray lastRay;
-    private Vector3 destination;
-    // Start is called before the first frame update
-    void Start()
+    private Animator PlayerAnimator;
+
+    void SetUp()
     {
         PlayerNav = GetComponent<NavMeshAgent>();
+        PlayerAnimator = GetComponent<Animator>();
+    }
+    void Start()
+    {
+        SetUp();
     }
 
     // Update is called once per frame
@@ -23,7 +28,10 @@ public class Mover : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             MoveToPoint();
+            
         }
+
+        UpdateAnimatorSpeed();
     }
 
     void MoveToPoint()
@@ -36,5 +44,15 @@ public class Mover : MonoBehaviour
         {
             PlayerNav.destination = hit.point;
         }
+    }
+
+    void UpdateAnimatorSpeed()
+    {
+        Vector3 velocity = PlayerNav.velocity;
+        Vector3 localVelocity = transform.InverseTransformDirection(velocity);
+        float speed = localVelocity.z;
+
+        PlayerAnimator.SetFloat("Forward", speed);
+        Debug.Log($"{velocity} {localVelocity}");
     }
 }
