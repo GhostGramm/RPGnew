@@ -32,7 +32,13 @@ namespace RPG.Core
 
         public void MoveTo(Vector3 point)
         {
+            PlayerNav.isStopped = false;
             PlayerNav.destination = point;
+        }
+
+        public void StopMovement()
+        {
+            PlayerNav.isStopped = true;
         }
 
         void UpdateAnimatorSpeed()
