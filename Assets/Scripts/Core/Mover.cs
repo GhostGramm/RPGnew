@@ -1,3 +1,4 @@
+using RPG.Managers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,11 +14,13 @@ namespace RPG.Core
 
         private NavMeshAgent PlayerNav;
         private Animator PlayerAnimator;
+        private ActionScheduler Scheduler;
 
         void SetUp()
         {
             PlayerNav = GetComponent<NavMeshAgent>();
             PlayerAnimator = GetComponent<Animator>();
+            Scheduler= GetComponent<ActionScheduler>();
         }
         void Start()
         {
@@ -32,6 +35,8 @@ namespace RPG.Core
 
         public void StartMovementAction(Vector3 point)
         {
+            Scheduler.StartAction(this);
+
             GetComponent<Fighter>().ResetTarget();
             MoveTo(point);
         }
