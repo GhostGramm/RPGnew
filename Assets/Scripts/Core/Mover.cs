@@ -7,7 +7,7 @@ using UnityEngine.AI;
 
 namespace RPG.Core
 {
-    public class Mover : MonoBehaviour
+    public class Mover : MonoBehaviour, iAction
     {
         [SerializeField]
         private Transform target;
@@ -37,7 +37,7 @@ namespace RPG.Core
         {
             Scheduler.StartAction(this);
 
-            GetComponent<Fighter>().ResetTarget();
+            //GetComponent<Fighter>().ResetTarget();
             MoveTo(point);
         }
 
@@ -47,7 +47,7 @@ namespace RPG.Core
             PlayerNav.destination = point;
         }
 
-        public void StopMovement()
+        public void Cancel()
         {
             PlayerNav.isStopped = true;
         }
@@ -60,6 +60,7 @@ namespace RPG.Core
 
             PlayerAnimator.SetFloat("Forward", speed);
         }
+
     }
 
 }
