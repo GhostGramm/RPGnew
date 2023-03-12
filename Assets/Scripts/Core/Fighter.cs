@@ -10,11 +10,13 @@ namespace RPG.Core
         private Transform target;
 
         private Mover entityMover;
+        private Animator PlayerAnimator;
         private ActionScheduler Scheduler;
 
         private void Start()
         {
             entityMover = GetComponent<Mover>();
+            PlayerAnimator = GetComponent<Animator>();
             Scheduler= GetComponent<ActionScheduler>();
         }
         private void Update()
@@ -28,7 +30,13 @@ namespace RPG.Core
             else
             {
                 entityMover.Cancel();
+                AttackBehaviour();
             }
+        }
+
+        private void AttackBehaviour()
+        {
+            PlayerAnimator.SetTrigger("attack");
         }
 
         private bool GetIsInRange()
@@ -52,6 +60,12 @@ namespace RPG.Core
             {
                 target = combatTarget.transform;
             }
+        }
+
+        //animation event
+        void Hit()
+        {
+
         }
 
         public void Cancel()
