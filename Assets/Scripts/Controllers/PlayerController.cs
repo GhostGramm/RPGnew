@@ -8,6 +8,7 @@ namespace RPG.Controllers
 {
     public class PlayerController : MonoBehaviour
     {
+        public bool isAttacking = false;
         void Update()
         {
             if (GetTargetToAttack())    return;
@@ -23,7 +24,7 @@ namespace RPG.Controllers
             {
                 if (Input.GetMouseButton(0))
                 {
-                    GetComponent<Mover>().MoveTo(hit.point);
+                    GetComponent<Mover>().StartMovementAction(hit.point);
                 }
 
                 return true;
@@ -54,6 +55,7 @@ namespace RPG.Controllers
 
         void PerformAttack(CombatTarget target)
         {
+            isAttacking = true;
             GetComponent<Fighter>().Attack(target);
         }
 

@@ -30,6 +30,12 @@ namespace RPG.Core
             UpdateAnimatorSpeed();
         }
 
+        public void StartMovementAction(Vector3 point)
+        {
+            GetComponent<Fighter>().ResetTarget();
+            MoveTo(point);
+        }
+
         public void MoveTo(Vector3 point)
         {
             PlayerNav.isStopped = false;

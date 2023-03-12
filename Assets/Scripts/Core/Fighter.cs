@@ -16,21 +16,38 @@ namespace RPG.Core
         }
         private void Update()
         {
-            if (target != null)
-            {
-               entityMover.MoveTo(target.position);
+            if (target == null) return;
 
-                float rangeDistance = Vector3.Distance(transform.position, target.position);
-                if (rangeDistance < weaponRange)
-                {
-                    entityMover.StopMovement();
-                }
+            if (!GetIsInRange())
+            {
+                entityMover.MoveTo(target.position);
             }
+            else
+            {
+                entityMover.StopMovement();
+            }
+        }
+
+        private bool GetIsInRange()
+        {
+            return Vector3.Distance(transform.position, target.position) < weaponRange;
         }
 
         public void Attack(CombatTarget combatTarget)
         {
             target = combatTarget.transform;
+        }
+
+        public void ResetTarget(CombatTarget combatTarget = null)
+        {
+            if(combatTarget== null)
+            {
+                target = null;
+            }
+            else
+            {
+                target = combatTarget.transform;
+            }
         }
     }
 }
