@@ -37,7 +37,6 @@ namespace RPG.Core
         {
             Scheduler.StartAction(this);
 
-            //GetComponent<Fighter>().ResetTarget();
             MoveTo(point);
         }
 
