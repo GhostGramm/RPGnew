@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2226649762895105314, guid: 530a40ec66a145441b9bd108c28d09ce, type: 3}
+      propertyPath: TotalHealth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5606804774744582420, guid: 530a40ec66a145441b9bd108c28d09ce, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -25,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5606804774744582440, guid: 530a40ec66a145441b9bd108c28d09ce, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.73
       objectReference: {fileID: 0}
     - target: {fileID: 5606804774744582440, guid: 530a40ec66a145441b9bd108c28d09ce, type: 3}
       propertyPath: m_LocalRotation.w
@@ -55,6 +59,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5751044742848904986, guid: 530a40ec66a145441b9bd108c28d09ce, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 530a40ec66a145441b9bd108c28d09ce, type: 3}
 --- !u!4 &5953930879114046860 stripped
@@ -77,10 +85,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.37
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1.04, z: 0}
 --- !u!1001 &7035282876702852128
 PrefabInstance:
   m_ObjectHideFlags: 0

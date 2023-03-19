@@ -11,6 +11,10 @@ namespace RPG.Core
 
         private Boolean isDead = false;
 
+        public bool IsDead()
+        {
+            return isDead;
+        }
         public void TakeDamage(float damage)
         {
             TotalHealth = Mathf.Max(TotalHealth - damage, 0);
@@ -19,6 +23,7 @@ namespace RPG.Core
                 Die();
             }
         }
+
 
         public void Die()
         {
