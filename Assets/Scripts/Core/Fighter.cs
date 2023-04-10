@@ -27,9 +27,8 @@ namespace RPG.Core
         {
             timeSinceLastAttack += Time.deltaTime;
 
-            if (target == null) return;
-
-            if (target.IsDead()) return;   
+            if (target == null)   return;  
+            if(target.IsDead()) return;
 
             if (!GetIsInRange())
             {
@@ -50,9 +49,21 @@ namespace RPG.Core
             if (timeSinceLastAttack > timeBetweenAttack)
             {
                 //triggers the Hit() Animation Event
-                animator.SetTrigger("attack");
+                TriggerAttack();
                 timeSinceLastAttack = 0;
             }
+        }
+
+        void TriggerAttack()
+        {
+            animator.ResetTrigger("stopAttack");
+            animator.SetTrigger("attack");
+        }
+
+        void stopAttack()
+        {
+            animator.ResetTrigger("attack");
+            animator.SetTrigger("stopAttack");
         }
 
         //animation event
@@ -91,9 +102,19 @@ namespace RPG.Core
             target.TakeDamage(damage);
         }
 
+        public bool canAttack(CombatTarget target)
+        {
+            if (target == null) return false;
+
+            Health targetHealth = target.GetComponent<Health>();
+
+            return targetHealth != null && !targetHealth.IsDead();
+
+        }
+
         public void Cancel()
         {
-            animator.SetTrigger("stopAttack");
+            stopAttack();
             ResetTarget(null);
         }
     }
